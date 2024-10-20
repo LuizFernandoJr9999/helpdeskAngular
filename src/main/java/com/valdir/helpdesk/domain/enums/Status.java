@@ -2,8 +2,8 @@ package com.valdir.helpdesk.domain.enums;
 
 public enum Status {
 
-	BAIXA(0, "ROLE_BAIXA"), MEDIA(1, "ROLE_MEDIA"), ALTA(2, "ROLE_ALTA");
-	
+	ABERTO(0, "ROLE_ABERTO"), ANDAMENTO(1, "ROLE_ANDAMENTO"), ENCERRADO(2, "ROLE_ENCERRADO");
+		
 	private Integer codigo;
 	private String descricao; 
 	
