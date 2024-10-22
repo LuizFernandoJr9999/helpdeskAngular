@@ -14,6 +14,8 @@ import com.valdir.helpdesk.repositories.TecnicoRepository;
 import com.valdir.helpdesk.services.exceptions.DataIntegrityViolationException;
 import com.valdir.helpdesk.services.exceptions.ObjectnotFoundException;
 
+import jakarta.validation.Valid;
+
 @Service
 public class TecnicoService {
 	
@@ -38,6 +40,14 @@ public class TecnicoService {
 		return repository.save(newObj);	
 	}
 
+	public Tecnico update(Integer id, @Valid TecnicoDTO objDTO) {
+		objDTO.setId(id);
+		Tecnico oldObj = findById(id);
+		validaPorCpfEEmail(objDTO);
+		oldObj = new Tecnico(objDTO);
+		return repository.save(oldObj);
+	}
+	
 	private void validaPorCpfEEmail(TecnicoDTO objDTO) {
 		Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
 		if (obj.isPresent() && obj.get().getId() != objDTO.getId()) {

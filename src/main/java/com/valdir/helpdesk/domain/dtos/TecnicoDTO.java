@@ -20,19 +20,19 @@ public class TecnicoDTO implements Serializable {
 	protected Integer id;
 	
 	@NotNull(message = "O campo NOME é requerido")
-	@NotEmpty(message = "O campo NOME é requerido")
+	//@NotEmpty(message = "O campo NOME é requerido")
 	protected String nome;
 	
 	@NotNull(message = "O campo CPF é requerido")
-	@NotEmpty(message = "O campo CPF é requerido")
+	//@NotEmpty(message = "O campo CPF é requerido")
 	protected String cpf;
 	
 	@NotNull(message = "O campo EMAIL é requerido")
-	@NotEmpty(message = "O campo EMAIL é requerido")
+	//@NotEmpty(message = "O campo EMAIL é requerido")
 	protected String email;
 	
 	@NotNull(message = "O campo SENHA é requerido")
-	@NotEmpty(message = "O campo SENHA é requerido")
+	//@NotEmpty(message = "O campo SENHA é requerido")
 	protected String senha;
 	
 	protected Set<Integer> perfis = new HashSet<>();
