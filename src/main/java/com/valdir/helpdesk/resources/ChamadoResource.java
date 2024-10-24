@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,8 @@ import com.valdir.helpdesk.domain.dtos.ChamadoDTO;
 import com.valdir.helpdesk.domain.dtos.TecnicoDTO;
 import com.valdir.helpdesk.services.ChamadoService;
 import com.valdir.helpdesk.services.TecnicoService;
+
+import jakarta.validation.Valid;
 
 @RestController 
 @RequestMapping(value = "/chamados")
@@ -47,6 +50,12 @@ public class ChamadoResource {
 		Chamado newObj = service.create(objDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<ChamadoDTO> update(@PathVariable Integer id, @Valid @RequestBody ChamadoDTO objDTO) {
+		Chamado newObj = service.update(id, objDTO);
+		return ResponseEntity.ok().body(new ChamadoDTO(newObj));
 	}
 
 }
